@@ -13,7 +13,9 @@ interface AvatarProps extends ImgHTMLAttributes<HTMLImageElement> {
 //    alt?: string;
 }
 
-export function Avatar({ hasBorder, src, alt, title }: AvatarProps) {
+// extraio a propriedade hasBorder e uso o spread operator ... para pegar
+// o restante das propriedades
+export function Avatar({ hasBorder, ...props }: AvatarProps) {
     /**
      * é possível usar desestruturação para pegar os atributos
      * 
@@ -24,9 +26,8 @@ export function Avatar({ hasBorder, src, alt, title }: AvatarProps) {
     return (
         <img
             className={hasBorder ? styles.avatarWithBorder : styles.avatar}
-            src={src}
-            alt={alt}
-            title={title}
+            // passo cada valor dentro de props e passando como uma propriedade para a tag img
+            {...props}
         />
     );
 }
